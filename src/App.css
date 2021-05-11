@@ -1,0 +1,38 @@
+.toolbar {
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.toolbar__item {
+  padding: 15px;
+  border: 1px solid black;
+}
+
+.toolbar__item.selected {
+  background-color: grey;
+  color: white;
+}
+
+.toolbar__item:hover {
+  cursor: pointer;
+}
+
+.toolbar__item:nth-of-type(n + 2) {
+  margin-left: 10px;
+}
+
+.project-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 900px;
+  height: 1250px;
+  align-items: start;
+}
+
+.project {
+  width: 30%;
+  height: fit-content;
+  padding: 15px;
+}
