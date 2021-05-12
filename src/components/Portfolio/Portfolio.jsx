@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { Component } from 'react'
 import Toolbar from '../Toolbar/Toolbar'
 import ProjectList from '../ProjectList/ProjectList';
@@ -7,8 +6,7 @@ export default class Portfolio extends Component {
   constructor(props) {
     super(props);
     this.filters = ["All", "Websites", "Flayers", "Business Cards"];
-    this.selected = 'All';
-    this.state = { filter: this.selected };
+    this.state = { filter: 'All' };
     this.projects = [{
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/mon.jpg",
       category: "Business Cards"
@@ -64,9 +62,9 @@ export default class Portfolio extends Component {
   }
 
   onSelectFilter = (e) => {
-    this.newState = e.target.textContent;
-    this.setState({filter: this.newState});
-    return this.projects.filter((project) => project.category === this.state.filter);
+    this.setState((state) => {
+      return {filter: e.target.textContent};
+    });
   }
   
   render() {
@@ -75,9 +73,12 @@ export default class Portfolio extends Component {
         <Toolbar
         key="toolbar"
         filters={this.filters}
-        selected={this.state}
+        selected={this.state.filter}
         onSelectFilter={this.onSelectFilter} />
-        <ProjectList key="list" projects={this.projects}/>
+        <ProjectList key="list" projects={this.projects.filter((project) => {
+          console.log(this.state.filter, project.category);
+          return project.category === this.state.filter;
+        })}/>
       </div>
     )
   }

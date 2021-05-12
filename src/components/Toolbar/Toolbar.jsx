@@ -5,7 +5,7 @@ export default function Toolbar(props) {
   return (
     <div className="toolbar">
       {filters.map((filter) => {
-        const isSelected = selected.filter === filter;
+        const isSelected = selected === filter;
         const className = isSelected ? 'toolbar__item selected' : 'toolbar__item';
         return <div key={filter} className={className} selected={isSelected} onClick={onSelectFilter}>{filter}</div>;
       })}
