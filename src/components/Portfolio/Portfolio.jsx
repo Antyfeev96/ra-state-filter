@@ -74,7 +74,7 @@ export default class Portfolio extends Component {
         key="toolbar"
         filters={this.filters}
         selected={this.state.filter}
-        onSelectFilter={(e) => this.onSelectFilter(e.target.textContent)} />
+        onSelectFilter={this.onSelectFilter} />
         <ProjectList key="list" projects={this.projects.filter((project) => this.state.filter === 'All' ? project : project.category === this.state.filter)}/>
       </div>
     )
