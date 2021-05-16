@@ -61,9 +61,9 @@ export default class Portfolio extends Component {
     }]
   }
 
-  onSelectFilter = (e) => {
+  onSelectFilter = (filter) => {
     this.setState((state) => {
-      return {filter: e.target.textContent};
+      return {filter: filter};
     });
   }
   
@@ -74,11 +74,8 @@ export default class Portfolio extends Component {
         key="toolbar"
         filters={this.filters}
         selected={this.state.filter}
-        onSelectFilter={this.onSelectFilter} />
-        <ProjectList key="list" projects={this.projects.filter((project) => {
-          console.log(this.state.filter, project.category);
-          return project.category === this.state.filter;
-        })}/>
+        onSelectFilter={(e) => this.onSelectFilter(e.target.textContent)} />
+        <ProjectList key="list" projects={this.projects.filter((project) => this.state.filter === 'All' ? project : project.category === this.state.filter)}/>
       </div>
     )
   }
